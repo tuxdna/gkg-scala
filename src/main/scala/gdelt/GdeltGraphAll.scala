@@ -41,7 +41,11 @@ object gdeltgrah2 extends App {
   println("Total Entries: " + allCount)
   var nodeId = 0
 
-  val personGraph = new EntityGraph("/tmp/personsGraph-neo4j")
+  val personGraph = new EntityGraph("personGraph-neo4j")
+  val orgGraph = new EntityGraph("orgGraph-neo4j")
+  val themeGraph = new EntityGraph("themeGraph-neo4j")
+  themeGraph.withinTransaction {
+  orgGraph.withinTransaction {
   personGraph.withinTransaction {
     for ((e, index) <- allEntries.zipWithIndex) {
       val record = new GkgRecord(e)
@@ -64,10 +68,14 @@ object gdeltgrah2 extends App {
           recordCounts(name) = recordCounts.getOrElse(name, 0) + 1
           nodeIds.getOrElseUpdate(name, { nodeId += 1; nodeId })
         }
-        personGraph.processRecord(elements)
+        personGraph.processRecord(record.persons)
+        orgGraph.processRecord(record.organizations)
+        themeGraph.processRecord(record.themes)
       }
     }
-  }
+  }}}
 
-  personGraph.print
+  personGraph.close
+  orgGraph.close
+  themeGraph.close
 }

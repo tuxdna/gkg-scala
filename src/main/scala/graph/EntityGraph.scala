@@ -113,7 +113,7 @@ class EntityGraph(val graphLocation: String) {
       val relCoOccur = getCoOccurenceEdge(sourceNode, targetNode)
       val count: Int = getCoOccurenceCount(relCoOccur)
       val newCount = setCoOccurenceCount(relCoOccur, count + value)
-      println(s"$sourceNodeName $targetNodeName $newCount")
+      // println(s"$sourceNodeName $targetNodeName $newCount")
     }
   }
 
