@@ -135,7 +135,23 @@ class EntityGraph(val graphLocation: String) {
     }
   }
 
-  def print = {
+  def printNeighbours = {
+    withinTransaction {
+      for (n <- graphDb.getAllNodes() if n.hasProperty("name")) {
+        val myName = n.getProperty("name")
+        val entries = n.getRelationships().filter { r =>
+          r.hasProperty("COUNT")
+        }.map { r =>
+          val o = r.getOtherNode(n)
+          val count = getCoOccurenceCount(r)
+          (o.getProperty("name"), count)
+        }
+        println(s"$myName => $entries")
+      }
+    }
+  }
+
+  def print() = {
     withinTransaction {
 
       def getFriends(person: Node): Traverser = {
@@ -160,5 +176,9 @@ class EntityGraph(val graphLocation: String) {
         println("Number of friends found: " + numberOfFriends)
       }
     }
+  }
+  
+  def close = {
+    graphDb.shutdown()
   }
 }
