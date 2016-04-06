@@ -1,7 +1,5 @@
 package gdelt
 
-import com.mongodb.casbah.MongoClient
-
 object Config {
   val dbName = "gdelt"
   val collectionName = "gdelt01"

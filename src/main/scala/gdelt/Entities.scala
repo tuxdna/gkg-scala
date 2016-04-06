@@ -7,10 +7,12 @@ import com.mongodb.casbah.Imports._
 
 class GkgRecord(dbObj: MongoDBObject) {
   def date = dbObj.as[String]("date")
+
   def numarts: Int = {
     val x = dbObj.as[String]("numarts")
     if (x.isEmpty()) 0 else x.toInt
   }
+
   def counts = dbObj.as[String]("counts")
 
   def themes: List[String] = {
@@ -30,11 +32,17 @@ class GkgRecord(dbObj: MongoDBObject) {
   }
 
   lazy val toneObj = dbObj.as[BasicDBObject]("tone")
+
   def tone = toneObj.as[Double]("tone")
+
   def pos = toneObj.as[Double]("pos")
+
   def neg = toneObj.as[Double]("neg")
+
   def polarity = toneObj.as[Double]("polarity")
+
   def verb = toneObj.as[Double]("verb")
+
   def pronoun = toneObj.as[Double]("pronoun")
 
   def cameoevents = {
@@ -50,7 +58,7 @@ class GkgRecord(dbObj: MongoDBObject) {
   }
 }
 
-case class Geography {
+case class Geography() {
   // GEO_TYPE
   // GEO_FULLNAME
   // GEO_COUNTRYCODE

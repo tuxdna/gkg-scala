@@ -1,4 +1,4 @@
-addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.0.0")
+// addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.0.0")
 // addSbtPlugin("org.ensime" % "ensime-sbt-cmd" % "0.1.1")
 
 // resolvers += Resolver.url(
@@ -6,4 +6,4 @@ addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.0.0")
 //   new URL("http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases/")
 // )(Resolver.ivyStylePatterns)
 
-addSbtPlugin("com.github.retronym" % "sbt-onejar" % "0.8")
+// addSbtPlugin("com.github.retronym" % "sbt-onejar" % "0.8")
